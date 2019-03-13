@@ -4,6 +4,7 @@ import 'package:demo/tab_screens/tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' ;
 import 'dart:convert';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() => runApp(MyApp());
 
@@ -101,7 +102,7 @@ class DashboardState extends State<DashboardPage>{
         ),
 
         drawer: new Drawer(
-          child: new Column(
+          /*child: new Column(
               children: <Widget>[
                 new DrawerHeader(
                   child: Image.asset('assets/invite_friends_pic.png'),
@@ -110,27 +111,29 @@ class DashboardState extends State<DashboardPage>{
                       shape: BoxShape.circle
                   ),
                 ),
+
                 new Column( children: drawerOptions),
-//      new Column(children: <Widget>[
-//      getListView(),
-//      ]
-//      ),
-              ]),
+
+              ]),*/
+
+          child: ListView(
+
+            children: <Widget>[
+
+              new DrawerHeader(
+                child: Image.asset('assets/invite_friends_pic.png'),
+                decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle
+              )
+              ),
+              new Column( children: drawerOptions)
+
+            ],
+          ),
 
         ),
-        /*  drawer: Drawer(
 
-      child: Column(
-
-
-        children: <Widget>[
-
-          UserAccountsDrawerHeader(accountName: Text("Nafeez Diamond"), accountEmail: null),
-          Column(children: drawerOptions,)
-        ],
-      ),
-
-    ),*/
 
 
         body:
@@ -150,15 +153,25 @@ class DashboardState extends State<DashboardPage>{
                     children: <Widget>[
 
 
-                      new Container(
+                      /*new Container(
 
                         height: 200.00,
                         padding: EdgeInsets.all(3.00),
                         child: PageView(
-                            pageSnapping: true,
-                            children:getImageViews(snapshot.data)
+                          pageSnapping: true,
+                          children:getImageViews(snapshot.data),
+
 
                         ),
+
+                      ),*/
+                      CarouselSlider(items: getImageViews(snapshot.data)
+                      ,autoPlay: true,initialPage: 0,
+                        autoPlayDuration: Duration(seconds: 2),
+                        aspectRatio: 16/9,
+                        viewportFraction: 1.0,
+                        reverse: false,
+                        pauseAutoPlayOnTouch: Duration(seconds: 1),
 
                       ),
 
@@ -168,7 +181,10 @@ class DashboardState extends State<DashboardPage>{
                         appBar: TabBar(tabs: getTabs(),unselectedLabelColor: Colors.black,labelColor:
                         Colors.blue,),
                         body: new TabBarView(children: getTabViews(snapshot.data.response.data.categoryData)),
-                      )),)
+                      )
+
+                      ),
+                      )
 
 
                     ],
@@ -258,20 +274,20 @@ class DashboardState extends State<DashboardPage>{
 
 
 
-  List<Widget> getImageViews(ProductList pl){
+}
 
-    int size = pl.response.data.banner.length;
-    List<Widget> l = new List<Widget>();
 
-    for(int i =0;i<size;i++){
+List<Widget> getImageViews(ProductList pl){
 
-      l.add(Container(child:Image.network("${pl.response.data.banner[i].image}",
-        fit: BoxFit.fill,
-        scale: 1.0,repeat: ImageRepeat.noRepeat,),));
-    }
+  int size = pl.response.data.banner.length;
+  List<Widget> l = new List<Widget>();
 
-    return l;
+  for(int i =0;i<size;i++){
+
+    l.add(Container(child:Image.network("${pl.response.data.banner[i].image}",
+      fit: BoxFit.fill,
+      scale: 1.0,repeat: ImageRepeat.noRepeat,),));
   }
 
-
+  return l;
 }
