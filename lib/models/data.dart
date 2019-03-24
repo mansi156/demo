@@ -1,5 +1,5 @@
-import 'package:demo/model/banner.dart';
-import 'package:demo/model/category_data.dart';
+import 'package:demo/models/banner.dart';
+import 'package:demo/models/category_data.dart';
 
 class Data{
 

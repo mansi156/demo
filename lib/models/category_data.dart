@@ -1,4 +1,4 @@
-import 'package:demo/model/children_data.dart';
+import 'package:demo/models/children_data.dart';
 
 class CategoryData{
 

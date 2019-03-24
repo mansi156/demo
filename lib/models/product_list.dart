@@ -1,4 +1,4 @@
-import 'package:demo/model/response.dart';
+import 'package:demo/models/response.dart';
 
 class ProductList{
 

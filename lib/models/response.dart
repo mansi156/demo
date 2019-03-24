@@ -1,4 +1,4 @@
-import 'package:demo/model/data.dart';
+import 'package:demo/models/data.dart';
 
 class Response{
 

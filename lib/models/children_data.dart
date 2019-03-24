@@ -1,4 +1,4 @@
-import 'package:demo/model/item.dart';
+import 'package:demo/models/item.dart';
 
 
 class ChildrenData{
